@@ -1,0 +1,23 @@
+# netlify.toml
+
+[build]
+  # Command to build the site
+  command = "pnpm run build"
+
+  # Directory containing the built site files (relative to root)
+  publish = "dist"
+
+[build.environment]
+  # Specify Node.js version for the build environment
+  # Ensure compatibility with project dependencies
+  NODE_VERSION = "22"
+  # Other build-time environment variables can be set here
+  # Example: NPM_FLAGS = "--legacy-peer-deps"
+
+# Configuration for Single Page Applications (SPAs)
+# Redirects all paths not matching a file to index.html
+# This allows client-side routing (e.g., React Router) to handle paths
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
