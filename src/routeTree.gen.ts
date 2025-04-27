@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as DemoTableImport } from './routes/demo.table'
+import { Route as DemoDaisyUiImport } from './routes/demo.daisy-ui'
 
 // Create/Update Routes
 
@@ -28,6 +29,12 @@ const DemoTableRoute = DemoTableImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DemoDaisyUiRoute = DemoDaisyUiImport.update({
+  id: '/demo/daisy-ui',
+  path: '/demo/daisy-ui',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -37,6 +44,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/demo/daisy-ui': {
+      id: '/demo/daisy-ui'
+      path: '/demo/daisy-ui'
+      fullPath: '/demo/daisy-ui'
+      preLoaderRoute: typeof DemoDaisyUiImport
       parentRoute: typeof rootRoute
     }
     '/demo/table': {
@@ -53,36 +67,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo/daisy-ui': typeof DemoDaisyUiRoute
   '/demo/table': typeof DemoTableRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo/daisy-ui': typeof DemoDaisyUiRoute
   '/demo/table': typeof DemoTableRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/demo/daisy-ui': typeof DemoDaisyUiRoute
   '/demo/table': typeof DemoTableRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/demo/table'
+  fullPaths: '/' | '/demo/daisy-ui' | '/demo/table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/demo/table'
-  id: '__root__' | '/' | '/demo/table'
+  to: '/' | '/demo/daisy-ui' | '/demo/table'
+  id: '__root__' | '/' | '/demo/daisy-ui' | '/demo/table'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemoDaisyUiRoute: typeof DemoDaisyUiRoute
   DemoTableRoute: typeof DemoTableRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemoDaisyUiRoute: DemoDaisyUiRoute,
   DemoTableRoute: DemoTableRoute,
 }
 
@@ -97,11 +116,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/demo/daisy-ui",
         "/demo/table"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/demo/daisy-ui": {
+      "filePath": "demo.daisy-ui.tsx"
     },
     "/demo/table": {
       "filePath": "demo.table.tsx"
