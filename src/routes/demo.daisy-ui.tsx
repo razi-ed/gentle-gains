@@ -28,11 +28,9 @@ function RouteComponent() {
 						excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
 						a id nisi.
 					</p>
-					<button className="btn btn-primary" type="button">
-						Get Started
-					</button>
           <button className="btn btn-secondary" type="button" onClick={increasePopulation}>{bears} - Add a Bear</button>
-          <button className="btn btn-error" type="button" onClick={handleRemoveAllBears}>Reset Count</button>
+          <button className="btn btn-error" type="button" onMouseDown={triggerHaptic} onMouseUp={removeAllBears}>Reset Count</button>
+          <button className="btn btn-error" type="button" onMouseDown={triggerHaptic} onMouseUp={handleRemoveAllBears}>Reset Count 2</button>
 				</main>
 			</article>
 		</section>
