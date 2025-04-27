@@ -18,6 +18,10 @@ function RouteComponent() {
     removeAllBears()
   }
 
+  const triggerNavigatorHaptic = () => {
+    navigator?.vibrate(100)
+  }
+
 	return (
 		<section className="hero bg-base-200 min-h-screen">
 			<article className="hero-content text-center">
@@ -31,6 +35,8 @@ function RouteComponent() {
           <button className="btn btn-secondary" type="button" onClick={increasePopulation}>{bears} - Add a Bear</button>
           <button className="btn btn-error" type="button" onMouseDown={triggerHaptic} onMouseUp={removeAllBears}>Reset Count</button>
           <button className="btn btn-error" type="button" onMouseDown={triggerHaptic} onMouseUp={handleRemoveAllBears}>Reset Count 2</button>
+          <button className="btn btn-error" type="button" onClickCapture={triggerNavigatorHaptic}>Vib1</button>
+          <button className="btn btn-error" type="button" onMouseUp={triggerNavigatorHaptic}>Vib2</button>
 				</main>
 			</article>
 		</section>
